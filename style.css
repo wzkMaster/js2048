@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	height: 100vh;
+	background-color: #333;
+	font-size: 7.5vmin;
+}
+
+#game-board {
+	display: grid;
+	position: relative;
+	padding: 2vmin;
+	border: 1vmin;
+	border-radius: 1vmin;
+	background-color: #ccc;
+
+	grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+	grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+	gap: var(--cell-gap);
+}
+
+.cell {
+	border-radius: 1vmin;
+	background-color: #aaa;
+}
+
+.tile {
+	display: flex;
+	position: absolute;
+	left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+	top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+	z-index: 2;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1vmin;
+	width: var(--cell-size);
+	height: var(--cell-size);
+	background-color: hsl(200, 50%, var(--background-lightness));
+	font-weight: bold;
+	color: hsl(200, 25%, var(--text-lightness));
+	transition: 100ms ease-in-out;
+	animation: show 200ms ease-in-out;
+
+	--x: 1;
+	--y: 2;
+	--background-lightness: 80%;
+	--text-lightness: 20%;
+}
+
+@keyframes show {
+	0% {
+		opacity: .5;
+		transform: scale(0);
+	}
+}
